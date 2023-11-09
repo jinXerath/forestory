@@ -22,10 +22,12 @@ public class TilesConfig {
 		final TilesConfigurer configurer = new TilesConfigurer();
 		
 		configurer.setDefinitions(
-					new String[] {
-							"/WEB-INF/tiles/client-setting.xml"
-							}
-				);
+			new String[] {
+				"/WEB-INF/tiles/admin/admin-setting.xml",
+				"/WEB-INF/tiles/client-setting.xml"
+				
+			}
+		);
 		
 		configurer.setCheckRefresh(true);
 		return configurer;
