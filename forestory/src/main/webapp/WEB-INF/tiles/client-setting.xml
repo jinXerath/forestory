@@ -21,5 +21,9 @@
 		<put-attribute name="main" value="/WEB-INF/views/client/{1}/{2}.jsp"/>
 	</definition>
 	
+	<definition name="client/board/*" extends="content">
+		<put-attribute name="main" value="/WEB-INF/views/client/board/{1}.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>
  
