@@ -23,7 +23,7 @@ public class TilesConfig {
 		
 		configurer.setDefinitions(
 			new String[] {
-				"/WEB-INF/tiles/admin/admin-setting.xml",
+				"/WEB-INF/tiles/admin-setting.xml",
 				"/WEB-INF/tiles/client-setting.xml"
 				
 			}
