@@ -584,12 +584,12 @@
  	function setPhotoToEditor(oFileInfo){
 		if (!!opener && !!opener.nhn && !!opener.nhn.husky && !!opener.nhn.husky.PopUpManager) {
 			//스마트 에디터 플러그인을 통해서 넣는 방법 (oFileInfo는 Array)
-
-			//opener.nhn.husky.PopUpManager.setCallback(window, 'SET_PHOTO', [oFileInfo]);
+			opener.nhn.husky.PopUpManager.setCallback(window, 'SET_PHOTO', [oFileInfo]);
+			
 			//본문에 바로 tag를 넣는 방법 (oFileInfo는 String으로 <img src=....> )
-			for (var i=0; i<oFileInfo.length; i++){
-				opener.nhn.husky.PopUpManager.setCallback(window, 'PASTE_HTML', ["<img style=\"max-width:400px; max-height:400px;\" src='../"+oFileInfo[i].sFileURL+"' />"]);
-			}
+			/*for (var i=0; i<oFileInfo.length; i++){
+				opener.nhn.husky.PopUpManager.setCallback(window, 'PASTE_HTML', ["<img style=\"max-width:400px; max-height:400px;\" src='.."+oFileInfo[i].sFileURL+"' />"]);
+			}*/
 
 		}
 	}

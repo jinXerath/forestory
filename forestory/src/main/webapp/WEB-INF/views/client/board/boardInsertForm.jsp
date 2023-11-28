@@ -16,39 +16,29 @@
 		<![endif]-->
 		      
 		<script type="text/javascript" src="/resources/include/js/jquery-3.7.0.min.js"></script>
-		<script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+		<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				smartEditor();
+				
+				let ckeditor_config = {
+					height: 500,
+					filebrowserUploadUrl: "/editor/imageUpload",
+					clipboard_handleImages: false,
+				};
+				
+				CKEDITOR.replace("boardContent", ckeditor_config);
 				
 				$("#submitBtn").click(function(){
-					oEditors.getById["boardContent"].exec("UPDATE_CONTENTS_FIELD", []);
-					
-					//let content = $("#boardContent").val();
-					//console.log(content);
-					
 					$("#boardWriteForm").attr({
 						"method":"post",
 						"action":"/board/boardInsert"
 					});
-					
 					$("#boardWriteForm").submit();
-					
-					
 				});
+
 			});
 			
-			let oEditors = []
-			
-			function smartEditor(){
-				console.log("Naver SmartEditor")
-				nhn.husky.EZCreator.createInIFrame({
-					oAppRef : oEditors,
-					elPlaceHolder : "boardContent",
-					sSkinURI : "/resources/smarteditor/SmartEditor2Skin.html",
-					fCreator : "createSEditor2"
-				});
-			};
+		
 		</script>
 	</head>
 	<body>
@@ -70,10 +60,7 @@
 				<div>
 					<label>내용</label><br>
 					<div id="smarteditor">
-						<textarea name="boardContent" id="boardContent" 
-									rows="20" cols="10"
-									placeholder="내용을 입력해주세요" 
-									style="width:800px"></textarea>
+						<textarea name="boardContent" id="boardContent"></textarea>
 					</div>
 				</div>
 				

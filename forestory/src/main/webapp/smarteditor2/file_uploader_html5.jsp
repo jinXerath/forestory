@@ -19,8 +19,8 @@
         out.println("NOTALLOW_" + fileName);
     } else {
         String defaultPath = request.getSession().getServletContext().getRealPath("/");
-        String filePath = defaultPath + "img" + File.separator + "smarteditor2" + 
-        					File.separator;
+        System.out.println(defaultPath);
+        String filePath = defaultPath + "img" + File.separator + "smarteditor2" + File.separator;
         File file = new File(filePath);
         if (!file.exists()) {
             file.mkdirs();
@@ -43,7 +43,7 @@
  
         fileInfo += "&bNewLine=true";    
         fileInfo += "&sFileName=" + fileName;    
-        fileInfo += "&sFileURL=/img/smarteditor2/"+autoFileName;
+        fileInfo += "&sFileURL=../img/smarteditor2/"+autoFileName;
         out.println(fileInfo);
     }
 %>
