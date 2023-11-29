@@ -12,10 +12,4 @@ public class AdminController {
 		return "admin/adminMain";
 	}
 	
-	@GetMapping("/")
-	public String index() {
-		return "client/content";
-	}
-	
-	
 }
