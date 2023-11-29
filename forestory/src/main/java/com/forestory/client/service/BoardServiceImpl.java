@@ -2,6 +2,8 @@ package com.forestory.client.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +27,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public Board boardInsert(Board board) {
+	@Transactional
+	public Board save(Board board) {
 		Board result = boardRepository.save(board);
 		
 		return result;

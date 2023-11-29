@@ -20,7 +20,7 @@
       <script type="text/javascript">
       		$(function(){
       			$("#insertFormBtn").click(function(){
-      				location.href="/board/boardInsertForm";
+      				location.href="/board/boardInsert";
       			});
       		});
       </script>

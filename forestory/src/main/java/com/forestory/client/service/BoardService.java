@@ -7,5 +7,5 @@ import com.forestory.domain.Board;
 public interface BoardService {
 	
 	public List<Board> boardList();
-	public Board boardInsert(Board board);
+	public Board save(Board board);
 }

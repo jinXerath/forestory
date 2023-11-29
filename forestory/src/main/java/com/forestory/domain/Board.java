@@ -15,12 +15,21 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
+import com.forestory.dto.BoardDTO;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @DynamicInsert
 @Entity
 @SequenceGenerator(name="board_generator", sequenceName = "board_seq", initialValue = 1, allocationSize = 1)
 @Data
+@Builder(builderMethodName = "BoardBuilder")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Board {
 	
 	@Id
@@ -38,8 +47,15 @@ public class Board {
 	
 	@Column(nullable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
 	@Temporal(TemporalType.DATE)
+	@Builder.Default
 	private Date boardRegdate = new Date();		// 등록일
 	
-	
+	public static BoardBuilder builder(BoardDTO boardDTO) {
+        return BoardBuilder()
+                    .boardCategory(boardDTO.getBoardCategory())
+                    .boardTitle(boardDTO.getBoardTitle())
+                    .boardContent(boardDTO.getBoardContent())
+                    .boardReadcnt(boardDTO.getBoardReadcnt());
+    }
 	
 }
