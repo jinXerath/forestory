@@ -9,7 +9,7 @@ public class AdminController {
 	// admin 메인
 	@GetMapping("/admin")
 	public String adminMain() {
-		return "admin/index";
+		return "admin/adminMain";
 	}
 	
 	@GetMapping("/")
