@@ -25,6 +25,9 @@
 		<link href="/resources/include/css/client/client-common.css" rel="stylesheet"/>
 		<!-- BootStrap Core JS Files -->
 		<script src="/resources/include/bootstrap-5.3.2-dist/js/bootstrap.bundle.js"></script>		
+		<!-- jQuery -->
+		<script src="/resources/include/js/jquery-3.7.1.min.js" type="text/javascript"></script>
+	
 	</head>
 	<body> 
       	<tiles:insertAttribute name="header" />

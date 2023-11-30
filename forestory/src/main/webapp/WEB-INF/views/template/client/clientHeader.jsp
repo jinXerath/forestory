@@ -21,7 +21,7 @@
 	              				<a class="nav-link " href="">자유게시판</a>
 	            			</li>
 	            			<li class="nav-item">
-	              				<a class="nav-link " href="blog-grid.html">마이페이지</a>
+	              				<a class="nav-link " href="">마이페이지</a>
 	            			</li>
 	
 	          			</ul>
@@ -29,13 +29,13 @@
 	
 	        		<div>
 	          			<div class="small" style="display: inline-block; margin-left: 10px;">
-	            			<button type="button" id="logout" class="btn btn-light">
+	            			<button type="button" id="logout" class="btn btn-light" onclick = "location.href = '/client/login/loginForm'">
 	              				<i class="fa-solid fa-door-open"></i>로그인
 	            			</button>
 	          			</div>
 	          			|
 	          			<div class="small" style="display: inline-block; margin-left: 10px;">
-	          				<button type="button" id="logout" class="btn btn-light">
+	          				<button type="button" id="logout" class="btn btn-light" onclick = "location.href = '/client/signUp/signUpForm'">
 	            				<i class="fa-solid fa-door-open"></i>회원가입
 	          				</button>
 	        			</div>
