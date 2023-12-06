@@ -18,7 +18,7 @@ import lombok.ToString;
 public class UserDTO {
 	
 	//@Email(message = "이메일 형식이 올바르지 않습니다.")
-	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6}$", message = "이메일 형식이 올바르지 않습니다.")
+	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "이메일 형식이 올바르지 않습니다.")
 	@NotEmpty(message = "이메일을 입력해주세요.")
 	private String userEmail;
 	
@@ -35,7 +35,7 @@ public class UserDTO {
 	@NotEmpty(message = "닉네임을 입력해주세요.")
 	private String userNick;
 	
-	@Pattern(regexp= "^[0-9]+$", message="전화번호 숫자만 입력해주세요.(특수문자 제외)")
+	@Pattern(regexp= "^([0-9]{2,3})-([0-9]{3,4})-([0-9]{4})$", message="올바른 전화번호를 입력해주세요.")
 	@NotEmpty(message = "전화번호를 입력해주세요.")
 	private String userPhone;
 	

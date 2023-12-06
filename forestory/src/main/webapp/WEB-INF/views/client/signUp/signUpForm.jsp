@@ -34,18 +34,20 @@
 		$.ajax({
 			url: "/client/"+noDuplicate+"Vaild",
 			type: "post",
-			data: JSON.stringify({userEmail : $("#"+noDuplicate).val()},
-								{userNick : $("#"+noDuplicate).val()}),
+			data: JSON.stringify({
+				userEmail : $("#"+noDuplicate).val(),
+				userNick : $("#"+noDuplicate).val()
+			}),
 			contentType: 'application/json; charset=utf-8',
-			dataType: "text",
+			dataType: "json",
 			error: function(){
 				alert('시스템 오류')
 			},
 			success: function(result){
-				if(result == "1"){
-					message('#'+chk,'blue','사용 가능한 '+word+'입니다.')
-				}else if(result == "0"){
+				if(result  == true){
 					message('#'+chk,'red','이미 사용중인 '+word+'입니다.')
+				}else {
+					message('#'+chk,'blue','사용 가능한 '+word+'입니다.')
 				}
 			}
 		});
@@ -60,7 +62,7 @@
 		valueStay("<c:out value='${userDto.userPhone}' />",$("#userPhone"))
 		
 		
-		// 서버에서 유효성 검사
+		// 서버에서 유효성 검사 메시지 출력
 		if("${validErrors['userEmail']}" != ""){
 			alert("${validErrors['userEmail']}")
 			$("#userEmail").focus();
@@ -91,7 +93,6 @@
 		//비밀번호 유효성 검사: 영문+숫자+특수문자, 8~16
 		const pwRegExp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&^])[A-Za-z\d@$!%*?&^]{8,16}$/;
 		$("#userPw").on("blur",function(){
-			console.log($("#userPw").val());
 			if($("#userPw").val()==""){
 				message('#chkPw','red','비밀번호를 입력하세요.')
 			}else if(!pwRegExp.test($("#userPw").val())){
@@ -132,14 +133,17 @@
 		})
 		
 		// 전화번호 유효성 검사
-		const phoneRegExp = /^[0-9]+$/;
+		const phoneRegExp = /^(\d{2,3})(\d{3,4})(\d{4})$/;
+		let phoneNumber;
 		$("#userPhone").on("blur",function(){
-			if($("#userPhone").val()==""){
+			phoneNumber = $("#userPhone").val().replace(/-/g, '');
+			if(phoneNumber ==""){
 				message("#chkPhone",'red','전화번호를 입력하세요.')
-			}else if(!phoneRegExp.test($("#userPhone").val())){
-				message('#chkPhone','red',"숫자만 입력해주세요('-'포함 모든 특수문자 불가)")
+			}else if(!phoneRegExp.test(phoneNumber)){
+				message('#chkPhone','red',"올바른 형식의 전화번호를 입력하세요.")
 			}else {
 				message('#chkPhone','blue','사용가능한 전화번호 입니다.')
+				$("#userPhone").val(phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`));
 			}
 		})
 		
@@ -150,6 +154,7 @@
 					"method":"post",
 					"action":"/client/signUp"
 				});
+				//$("#userPhone").val(phoneNumber);
 				$("#signUpForm").submit();
 			} else {
 				alert('비밀번호가 일치하지 않습니다.')
@@ -164,98 +169,104 @@
 
 <body>
 	<div id="signUpContainer">
-		<h3 class="text-center">회원가입 기본정보입력</h3>
-		<div class="d-flex justify-content-center" >
-			<form id="signUpForm">
-				<div class="row form-group paddingBottom">
-					<div class="col-md-4">
-						<label class="label">이메일</label>
-					</div>
-					<div class="col-md-8">
-						<input type="text" class="form-control gray" id="userEmail" name="userEmail" />
-						<div class="chkDiv" id="chkEmail">
-							<span>보유하신 이메일을 입력해주세요</span>
+		
+		<div class="d-flex justify-content-center row" >
+			<h3 class="text-center paddingBottom">회원가입 기본정보입력</h3>
+			<div class="col-md-4"></div>
+			<div class="col-md-6">
+				<form id="signUpForm">
+					<div class="row form-group paddingBottom">
+						<div class="col-md-4">
+							<label class="label">포레스토리ID</label>
+						</div>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="ID(email)"/>
+							<div class="chkDiv" id="chkEmail">
+								<span>보유하신 이메일을 입력해주세요.</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				
-				
-				<div class="row form-group paddingBottom">
-					<div class="col-md-4">
-						<label class="label">비밀번호</label> 
-					</div>
-					<div class="col-md-8">
-						<input type="password" class="form-control gray" id="userPw" name="userPw" />
-						<div class="chkDiv" id="chkPw">
-							<span>영문/숫자/특수문자를 사용하여 8~16자 사이로 비밀번호를 입력해주세요</span>
+					
+					
+					<div class="row form-group paddingBottom">
+						<div class="col-md-4">
+							<label class="label">비밀번호</label> 
+						</div>
+						<div class="col-md-8">
+							<input type="password" class="form-control" id="userPw" name="userPw" placeholder="password"/>
+							<div class="chkDiv" id="chkPw">
+								<span>비밀번호를 입력해주세요.</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="row form-group paddingBottom">
-					<div class="col-md-4">
-						<label class="label">비밀번호 확인</label> 
-					</div>
-					<div class="col-md-8">
-						<input type="password" class="form-control " id="userPwCheck" name="userPwCheck" />
-						<div class="chkDiv" id="doubleChkPw">
-							<span>비밀번호를 입력해주세요.</span>
+					
+					<div class="row form-group paddingBottom">
+						<div class="col-md-4">
+							<label class="label">비밀번호 확인</label> 
+						</div>
+						<div class="col-md-8">
+							<input type="password" class="form-control " id="userPwCheck" name="userPwCheck" placeholder="confirm password"/>
+							<div class="chkDiv" id="doubleChkPw">
+								<span>비밀번호를 입력해주세요.</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!--  
-				<div class="row form-group paddingBottom">
-					<div class="col-md-4">
-						<label class="label">이름</label>
-					</div>
-					<div class="col-md-8"> 
-						<input type="text" class="form-control" id="userName" name="userName" />
-						<div class="chkDiv" id="chkName">
-							<span>이름를 입력해주세요</span>
+					<!--  
+					<div class="row form-group paddingBottom">
+						<div class="col-md-4">
+							<label class="label">이름</label>
+						</div>
+						<div class="col-md-8"> 
+							<input type="text" class="form-control" id="userName" name="userName" />
+							<div class="chkDiv" id="chkName">
+								<span>이름를 입력해주세요</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				-->
-				<div class="row form-group paddingBottom">
-					<div class="col-md-4">
-						<label class="label">닉네임</label> 
-					</div>
-					<div class="col-md-8"> 
-						<input type="text" class="form-control" id="userNick" name="userNick" />
-						<div class="chkDiv" id="chkNick">
-							<span>닉네임를 입력해주세요</span>
+					-->
+					<div class="row form-group paddingBottom">
+						<div class="col-md-4">
+							<label class="label">닉네임</label> 
+						</div>
+						<div class="col-md-8"> 
+							<input type="text" class="form-control" id="userNick" name="userNick" placeholder="nickname"/>
+							<div class="chkDiv" id="chkNick">
+								<span>닉네임를 입력해주세요.</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="row form-group paddingBottom">
-					<div class="col-md-4">
-						<label class="label">전화번호</label> 
-					</div>
-					<div class="col-md-8"> 
-						<input type="text" class="form-control" id="userPhone" name="userPhone" />
-						<div class="chkDiv" id="chkPhone">
-								<span>전화번호를 숫자만 입력해주세요</span>
+					
+					<div class="row form-group paddingBottom">
+						<div class="col-md-4">
+							<label class="label">전화번호</label> 
 						</div>
+						<div class="col-md-8"> 
+							<input type="text" class="form-control" id="userPhone" name="userPhone" placeholder="phone number"/>
+							<div class="chkDiv" id="chkPhone">
+									<span>전화번호를 숫자만 입력해주세요.</span>
+							</div>
+						</div>
+						<!-- 
+						<button type="button" class="form-control button" id="phoneCheckBtn">전화번호 인증</button>
+						 -->
 					</div>
-					<button type="button" class="form-control button" id="phoneCheckBtn">전화번호 인증</button>
-				</div>
-				
-				<!-- <div class="row form-group">
-					<label class="label">생년월일</label> 
-					<input type="date" class="form-control" id="user_birth" name="user_birth" />
-				</div> -->
-				
-				<!-- <div class="row form-group">
-					<label class="label">주소</label> 
-					<input type="text" class="form-control" id="user_addr" name="user_addr" />
-				</div> -->
-				
-				
-				<div class="row form-group paddingBottom">
-					<input type="button" class="form-control button" id="signUpBtn" name="signUpBtn" value="회원가입" />
-				</div>
-			</form>
+					
+					<!-- <div class="row form-group">
+						<label class="label">생년월일</label> 
+						<input type="date" class="form-control" id="user_birth" name="user_birth" />
+					</div> -->
+					
+					<!-- <div class="row form-group">
+						<label class="label">주소</label> 
+						<input type="text" class="form-control" id="user_addr" name="user_addr" />
+					</div> -->
+					
+				</form>
+			</div>
+			<div class="col-md-2"></div>
+			<div class="row form-group paddingBottom d-flex justify-content-center">
+				<input type="button" class="form-control button" id="signUpBtn" name="signUpBtn" value="회원가입" />
+			</div>
 		</div>
 	</div>
 </body>

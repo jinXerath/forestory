@@ -10,12 +10,12 @@
 	          			<span></span>
 	          			<span></span>
 	        		</button>
-	        		<a class="navbar-brand text-brand" href="index.html"><span class="color-b">Forestory</span></a>
+	        		<a class="navbar-brand text-brand" href="index.html"><span class="color-b">연습용</span></a>
 	
 	        		<div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
 	          			<ul class="navbar-nav">
 				            <li class="nav-item">
-				              	<a class="nav-link" href="">우리의 숲</a>
+				              	<a class="nav-link" href="">게시판</a>
 				            </li>
 	            			<li class="nav-item">
 	              				<a class="nav-link " href="">자유게시판</a>

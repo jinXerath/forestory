@@ -48,7 +48,7 @@ public class UserController {
 	//회원가입 기능
 	@PostMapping("/signUp")
 	public String signUp(@Valid @ModelAttribute UserDTO userDto, BindingResult result, Model model, RedirectAttributes ras) {
-		
+		System.out.println(userDto.getUserPhone());
 //        if(result.hasErrors()) {
 //        	ras.addFlashAttribute("errors", result.getFieldErrors());
 //        	return "redirect:/client/signUp/signUpForm";
@@ -56,6 +56,8 @@ public class UserController {
 		
 		// 필드와 오류 메시지를 매핑하는 HashMap 생성
         Map<String, String> validErrors = new HashMap<>();
+        
+        // 유효성 검사 에러가 있을 경우
         if(result.hasErrors()) {
 	        for (FieldError error : result.getFieldErrors()) {
 	            // 필드명과 오류 메시지를 HashMap에 추가
@@ -67,20 +69,23 @@ public class UserController {
     	
 	        return "redirect:/client/signUp/signUpForm";
         }
-        	
+        
+        // 전화번호 하이픈 제거
+		String removeHyphenPn = userDto.getUserPhone().replaceAll("[-]", "");
 		
 		// 빌더패턴으로 회원정보 입력
 		User user = User.builder()
 						.userEmail(userDto.getUserEmail())
 						.userPw(userDto.getUserPw())
 						.userNick(userDto.getUserNick())
-						.userPhone(userDto.getUserPhone())
+						.userPhone(removeHyphenPn)
 						.build();
 		
 		// 중복일 경우 true
 		boolean emailValid = userService.existsByUserEmail(user.getUserEmail());
 		boolean nickValid = userService.existsByUserNick(user.getUserNick());
 		
+		// 중복 에러가 있을 경우
 		if(emailValid || nickValid) {
 			if(emailValid) { // 이메일 중복
 	        	validErrors.put("userEmail", "이미 사용중인 이메일입니다.");
@@ -99,36 +104,25 @@ public class UserController {
 	// 회원가입 이메일 중복 검사
 	@ResponseBody
 	@PostMapping(value="/userEmailVaild", produces = "application/json; charset=UTF-8")
-	public String userEmailVaild(@RequestBody UserDTO userDto) {
+	public boolean userEmailVaild(@RequestBody UserDTO userDto) {
 		
 		User user = User.builder().userEmail(userDto.getUserEmail()).build();
 		
 		// email 이 존재할 경우 true 반환
 		boolean chkEmail = userService.existsByUserEmail(user.getUserEmail());
 		
-		String result;
-		if(chkEmail) {
-			result = "0";
-		} else {
-			result = "1";
-		}
-		return result;
+		return chkEmail;
 	}
 	
 	// 회원가입 닉네임 중복 검사
 	@ResponseBody
 	@PostMapping(value="/userNickVaild", produces = "application/json; charset=UTF-8")
-	public String userNickVaild(@RequestBody UserDTO userDto) {
+	public boolean userNickVaild(@RequestBody UserDTO userDto) {
 		
-		User user = User.builder().userEmail(userDto.getUserNick()).build();
+		User user = User.builder().userNick(userDto.getUserNick()).build();
 		// nick 이 존재할 경우 true 반환
 		boolean chkNick = userService.existsByUserNick(user.getUserNick());
-		String result;
-		if(chkNick) {
-			result = "0";
-		} else {
-			result = "1";
-		}
-		return result;
+		
+		return chkNick;
 	}
 }
