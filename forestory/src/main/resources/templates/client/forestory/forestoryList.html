@@ -2,7 +2,86 @@
 <html xmlns:th="http://www.thymeleaf.org" 
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{client/fragments/clientLayout}">
+<style>
+	*{
+	    box-sizing: border-box;
+	    margin: 0; padding: 0;
+	}
+	body{
+	    width: 100%;
+	}
+	a{
+	    text-decoration: none;
+	}
+	#wrap{
+	    width: 1000px;
+	    height: 100%;
+	    margin: 0 auto ;
+	    padding: 0;
+	}
+	.search{
+	    width: 900px;
+	    text-align: center;
+	    margin: 0 auto;
+	    border-bottom: 1px solid #000;
+	}
+	.main_title{
+	    font-size: 35px;
+	    font-weight: bold;
+	}
+	.main_content{
+	    font-size: 15px;
+	    font-weight: bold;
+	    margin-top: 20px;
+	}
+	.select{
+	    width: 130px;
+	    height: 35px;
+	    margin-bottom: 10px;
+	    border-radius: 5px;
+	}
+	.search_content{
+	    width: 250px;
+	    height: 35px;
+	    border-radius: 5px;
+	}
+	.search_btn{
+	    width: 50px;
+	    height: 35px;
+	    border-radius: 5px;
+	}
+	.write_btn{
+	    width: 100px;
+	    height: 35px;
+	    font-weight: bold;
+	    border: none;
+	    border-radius: 5px;
+	    color: #fff;
+	    background-color: rgb(46, 204, 113);
+	    float: right;
+	}
+	table{
+	    width: 250px;
+	    height: 350px;
+	    border: 1px solid #000;
+	    background-color: #f0f0f0;
+	    margin-top: 50px;
+	    margin-left: 10px;
+	    float: left;
+	}
+	.content_user{
+	    border-bottom: 1px solid #000;
+	    font-size: 20px;
+	    font-weight: bold;
+	}
+	.content_title,.hashtag,.content_like{
+	    font-weight: bold;
+	}
+	.content td{
+	    height: 40px;
+	}
 
+</style>
 <div layout:fragment="content">
 	<div id="wrap">
         <div class="search">
