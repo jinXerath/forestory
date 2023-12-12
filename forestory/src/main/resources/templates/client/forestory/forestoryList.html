@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{client/fragments/clientLayout}">
+
+<div layout:fragment="content">
+	<div id="wrap">
+        <div class="search">
+            <div class="main_title">우리의 숲</div>
+            <div class="main_content">여러분의 반려식물을 자유롭게 포스팅 해주세요:)</div>
+            <div>
+                <select name="" class="select">
+                    <option value="">전체</option>
+                    <option value="">해쉬태그</option>
+                </select>
+                <input type="text" class="search_content" placeholder="내용을 입력해주세요.">
+                <input type="button" class="search_btn" value="검색">
+                <input type="button" class="write_btn" value="글쓰기">
+            </div>
+        </div>
+
+        <div class="content">
+            <table>
+                <tr>
+                <th class="content_img">
+                    <a href=""><img src="#"></a>
+                </th>
+                </tr>
+                <tr class="user_tr">
+                <td class="content_user">할삔장첸</td>
+                </tr>
+                <tr>
+                <td class="content_title">니들이 게맛을 알아?</td>
+                </tr>
+                <tr>
+                <td class="content_content">저는 게 맛을 모르거든요.</td>
+                </tr>
+                <tr>
+                <td class="hashtag">#킹크랩</td>
+                </tr>
+                <tr>
+                <td class="content_like">좋아요 댓글</td>
+                </tr>
+            </table>
+        </div>
+        <!-- 페이지 칸 -->
+        <div style="width: 30px; height: 30px;">
+
+        </div>
+    </div>
+</div>
+</html>
+
+

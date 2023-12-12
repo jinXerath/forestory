@@ -11,9 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.forestory.dto.ForestoryDTO;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,6 +32,8 @@ import lombok.NoArgsConstructor;
 @SequenceGenerator(name="forestory_generator", sequenceName = "forestory_seq", initialValue = 1, allocationSize = 1)
 @Getter
 @EntityListeners(AuditingEntityListener.class)
+@DynamicInsert
+@Builder(builderMethodName = "ForestoryBuilder")
 public class Forestory {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "forestory_generator")
@@ -58,12 +63,11 @@ public class Forestory {
    @ColumnDefault("0")
    private int forestoryReplycnt;	// 댓글 갯수
 
-   @Builder
-   public Forestory(String forestoryTitle, String forestoryContent) {
-	   this.forestoryTitle = forestoryTitle;
-	   this.forestoryContent = forestoryContent;
+   public static ForestoryBuilder builder(ForestoryDTO forestoryDTO) {
+	   return ForestoryBuilder()
+			   .forestoryTitle(forestoryDTO.getForestoryTitle())
+			   .forestoryContent(forestoryDTO.getForestoryContent());
    }
-	   
    
    //일대다 관계 추가(사용자는  여러개의 forestory를 포스팅을 할 수 있다.(가진다.))
    // fetch : 대다(toMany) 관계에는 FetchType.LAZY가 기본값이므로 정의할 필요가 없지만 대일(toOne) 관계에는 정의해야 함

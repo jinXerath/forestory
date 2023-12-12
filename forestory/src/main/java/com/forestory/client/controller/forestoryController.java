@@ -19,10 +19,10 @@ public class forestoryController {
 	}
 	
 	@GetMapping("/forestoryList")
-	public String forestoryList() {
+	public String forestory() {
 		
 		
-		log.info("forestoryList 메소드 호출성공");
+		log.info("forestory 메소드 호출성공");
 		return "client/forestory/forestoryList";
 	}
 }

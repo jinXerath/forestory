@@ -54,8 +54,7 @@ public class Board {
         return BoardBuilder()
                     .boardCategory(boardDTO.getBoardCategory())
                     .boardTitle(boardDTO.getBoardTitle())
-                    .boardContent(boardDTO.getBoardContent())
-                    .boardReadcnt(boardDTO.getBoardReadcnt());
+                    .boardContent(boardDTO.getBoardContent());
     }
 	
 }
