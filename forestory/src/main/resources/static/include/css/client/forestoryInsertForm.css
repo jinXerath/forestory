@@ -1,0 +1,26 @@
+.title{
+    width: 900px;
+    text-align: center;
+    margin: 0 auto;
+    border-bottom: 1px solid #000;
+}
+.mainTitle{
+    font-size: 35px;
+    font-weight: bold;
+    padding: 30px 0 30px 0;
+}
+.mainContent{
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#insertForm  div{
+	margin-bottom: 50px;
+}
+
+#insertForm label{
+	font-size: large;
+	margin-bottom: 12px;
+}

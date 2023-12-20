@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/common.jspf"%>
 <link rel="stylesheet" type="text/css"
-	href="/resources/include/css/login.css">
+	href="/resources/include/css//login.css">
 </head>
 <body>
 	<div id="container">

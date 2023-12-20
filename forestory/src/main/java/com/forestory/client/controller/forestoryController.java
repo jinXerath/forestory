@@ -11,18 +11,19 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/forestory/*")
 public class forestoryController {
 	
-	@GetMapping("/forestoryInsertForm")
+	@GetMapping("/insertForm")
 	public String forestoryInsert() {
 		
 		log.info("forestoryInsertForm 메소드 호출성공");
 		return "client/forestory/forestoryInsertForm";
 	}
 	
-	@GetMapping("/forestoryList")
+	@GetMapping("/list")
 	public String forestory() {
 		
 		
 		log.info("forestory 메소드 호출성공");
 		return "client/forestory/forestoryList";
 	}
+	
 }
