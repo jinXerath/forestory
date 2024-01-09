@@ -3,10 +3,12 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{client/fragments/clientLayout}">
 
-	<head>
+	<th:block layout:fragment="css">
 	<!--	<link rel="stylesheet" href="/resources/include/css/client/forestoryList.css" /> -->
 		<link th:href="@{/resources/include/css/client/forestoryList.css}" rel="stylesheet"/>
+	</th:block>
 	
+	<th:block layout:fragment="js">
 		<script th:src="@{/resources/include/js/jquery-3.7.1.min.js}" type="text/javascript"></script>		
 		<script type="text/javascript">
 			$(function(){
@@ -15,7 +17,7 @@
 				})
 			});
 		</script>
-	</head>
+	</th:block>
 <!-- 본문 content -->
 	<div layout:fragment="content">
 		<div id="wrap">

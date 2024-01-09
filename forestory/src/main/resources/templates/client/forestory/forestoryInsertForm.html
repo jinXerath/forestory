@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" 
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{client/fragments/clientLayout}">
-	  <head>
+	<th:block layout:fragment="css">
 		<link th:href="@{/resources/include/css/client/forestoryInsertForm.css}" rel="stylesheet"/>
+	</th:block>
 	
+	<th:block layout:fragment="js">
 		<script th:src="@{/resources/include/js/client/forestoryList.js}" type="text/javascript"></script>		
 		<script th:src="@{/resources/include/js/jquery-3.7.1.min.js}" type="text/javascript"></script>		
 		<script type="text/javascript">
@@ -17,10 +19,8 @@
 					$("forestoryInsertForm").submit();
 				});
 			})
-		
-		
-		</script>		
-	</head>	
+		</script>
+	</th:block>			
 	<!-- 본문 -->	  
 	<div layout:fragment="content">
 	<div id="forestoryContainer">
