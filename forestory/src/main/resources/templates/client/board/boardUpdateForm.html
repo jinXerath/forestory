@@ -2,34 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org" 
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{client/fragments/clientLayout}">
-<head>
-	<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
-	<script th:inline="javascript">
-		$(function () {
-			
-			let content = /*[[${boardDto.boardContent}]]*/'';
+	<th:block layout:fragment="js">
+		<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
+		<!--<script th:inline="javascript">-->
+		<script type="text/javascript">
+			$(function () {
 				
-			console.log(content);
-			
-			let ckeditor_config = {
-				height: 500,
-				filebrowserUploadUrl: "/editor/imageUpload",
-				clipboard_handleImages: false,
-			};
-
-			CKEDITOR.replace("boardContent", ckeditor_config);
-			
-			$("#submitBtn").click(function () {
-				$("#boardUpdateForm").attr({
-					"method": "post",
-					"action": "/board/edit/" + /*[[${boardDto.boardNo}]]*/0
+				let content = /*[[${boardDto.boardContent}]]*/'';
+					
+				console.log(content);
+				
+				let ckeditor_config = {
+					height: 500,
+					filebrowserUploadUrl: "/editor/imageUpload",
+					clipboard_handleImages: false,
+				};
+	
+				CKEDITOR.replace("boardContent", ckeditor_config);
+				
+				$("#submitBtn").click(function () {
+					$("#boardUpdateForm").attr({
+						"method": "post",
+						"action": "/board/edit/" + /*[[${boardDto.boardNo}]]*/0
+					});
+					$("#boardUpdateForm").submit();
 				});
-				$("#boardUpdateForm").submit();
+				
 			});
 			
-		});
-		
-	</script>
+		</script>
+	</th:block>
 </head>
 <div layout:fragment="content" class="container">
 	<h1 class="text-center">자유게시판</h1>
