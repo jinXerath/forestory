@@ -10,14 +10,13 @@
 	</th:block>
 	
 	<th:block layout:fragment="js">
-	<!--	<script src="/resources/include/js/client/forestoryList.js"></script> 
-		<script th:src="@{/resources/include/js/client/forestoryList.js}" type="text/javascript"></script>	-->
-		<script>
+		<script th:src="@{/resources/include/js/jquery-3.7.1.min.js}" type="text/javascript"></script>		
+		<script type="text/javascript">
 			$(function(){
 				$("#insertFormBtn").click(function(){
-					location.href = "/client/forestory/forestoryInsertForm";
-				});
-			})		
+					window.location.href = "/forestory/insertForm"
+				})
+			});
 		</script>
 	</th:block>
 	
@@ -25,40 +24,40 @@
 	<div layout:fragment="content">
 		<div id="wrap">
 	        <div class="search">
-	            <div class="main_title">우리의 숲</div>
-	            <div class="main_content">여러분의 반려식물을 자유롭게 포스팅 해주세요:)</div>
+	            <div class="mainTitle">우리의 숲</div>
+	            <div class="mainContent">🍀여러분의 반려식물을 자유롭게 포스팅 해주세요:)</div>
 	            <div>
 	                <select name="" class="select">
 	                    <option value="">전체</option>
 	                    <option value="">해쉬태그</option>
 	                </select>
-	                <input type="text" class="search_content" placeholder="내용을 입력해주세요.">
-	                <input type="button" class="search_btn" value="검색">
-	                <input type="button" class="insertFormBtn" value="글쓰기">
+	                <input type="text" class="searchContent" placeholder="내용을 입력해주세요.">
+	                <input type="button" class="searchBtn" value="검색">
+	                <input type="button" class="insertFormBtn" id="insertFormBtn" value="글쓰기">
 	            </div>
 	        </div>
 		
 	        <div class="forestory">
 	            <table>
 	                <tr>
-	                <th class="content_img">
+	                <th class="contentImg">
 	                    <a href=""><img src="#"></a>
 	                </th>
 	                </tr>
-	                <tr class="user_tr">
-	                <td class="content_user">할삔장첸</td>
+	                <tr class="userTr">
+	                <td class="contentUser" name="userName" id="userName">할삔장첸</td>
 	                </tr>
 	                <tr>
-	                <td class="content_title">니들이 게맛을 알아?</td>
+	                <td class="contentTitle" name="forestoryTitle" id="forestoryTitle">니들이 게맛을 알아?</td>
 	                </tr>
 	                <tr>
-	                <td class="content_content">저는 게 맛을 모르거든요.</td>
+	                <td class="contentContent" name="forestoryContent" id="forestoryContnet">저는 게 맛을 모르거든요.</td>
 	                </tr>
 	                <tr>
 	                <td class="hashtag">#킹크랩</td>
 	                </tr>
 	                <tr>
-	                <td class="content_like">좋아요 댓글</td>
+	                <td class="contentLike">좋아요 댓글</td>
 	                </tr>
 	            </table>
 	        </div>

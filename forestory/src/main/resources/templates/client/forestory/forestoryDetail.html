@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{client/fragments/clientLayout}">
+	  
+	<th:block layout:fragment="css">
+		<link th:href="@{/resources/include/css/client/forestoryInsertForm.css}" rel="stylesheet"/>
+	</th:block>
+	
+	<th:block layout:fragment="js">
+		<script th:src="@{/resources/include/js/client/forestoryList.js}" type="text/javascript"></script>		
+		<script th:src="@{/resources/include/js/jquery-3.7.1.min.js}" type="text/javascript"></script>		
+		<script th:src="@{/resources/ckeditor/ckeditor.js}" type="text/javascript"></script>		
+
+	</th:block>			
+	<!-- 본문 -->	  
+	<div layout:fragment="content">
+	<div id="signUpContainer">
+		<div class="d-flex justify-content-center row" >
+	        <div class="title">
+	            <div class="mainTitle">우리의 숲</div>
+	            <div class="mainContent">🍀 여러분의 반려식물을 자유롭게 포스팅 해주세요:)</div>
+	        </div>
+	        
+
+			<h3 class="text-center" style="padding-top: 30px; padding-bottom: 30px;" th:text="${forestory.forestoryContent}"></h3>
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<label>글 내용</label>
+				<p th:text="${forestory.forestoryContent}"></p>
+				<p th:text="${forestory.forestoryRegdate}"></p>
+			</div>
+			<div class="col-md-3"></div>
+			
+		</div>
+	</div>
+	</div>
+</html>

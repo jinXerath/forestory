@@ -20,14 +20,16 @@ a{
     margin: 0 auto;
     border-bottom: 1px solid #000;
 }
-.main_title{
+.mainTitle{
     font-size: 35px;
     font-weight: bold;
+    margin-top: 30px;
 }
-.main_content{
+.mainContent{
     font-size: 15px;
     font-weight: bold;
     margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .forestory{
@@ -40,12 +42,12 @@ a{
     margin-bottom: 10px;
     border-radius: 5px;
 }
-.search_content{
+.searchContent{
     width: 250px;
     height: 35px;
     border-radius: 5px;
 }
-.search_btn{
+.searchBtn{
     width: 50px;
     height: 35px;
     border-radius: 5px;
@@ -69,12 +71,12 @@ table{
     margin-left: 10px;
     float: left;
 }
-.content_user{
+.contentUser{
     border-bottom: 1px solid #000;
     font-size: 20px;
     font-weight: bold;
 }
-.content_title,.hashtag,.content_like{
+.contentTitle,.hashtag,.contentLike{
     font-weight: bold;
 }
 .content td{

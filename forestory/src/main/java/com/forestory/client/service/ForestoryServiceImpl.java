@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.forestory.domain.Board;
 import com.forestory.domain.Forestory;
 import com.forestory.repository.ForestoryRepository;
 
@@ -20,7 +19,7 @@ public class ForestoryServiceImpl implements ForestoryService {
 	private ForestoryRepository forestoryRepository;
 
 	@Override
-	public List<Forestory> forestoryList(Forestory forestory) {
+	public List<Forestory> forestoryList() {
 		List<Forestory> forestoryList = (List<Forestory>)forestoryRepository.findAll();
 		
 		return forestoryList;

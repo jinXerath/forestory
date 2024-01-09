@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{client/fragments/clientLayout}">
+	  
+	<th:block layout:fragment="js">
+		<script type="text/javascript" src="/resources/include/js/jquery-3.7.0.min.js"></script>
+		<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
+		<script type="text/javascript">
+			
+			$(function(){
+				
+				let ckeditor_config = {
+					height: 500,
+					filebrowserUploadUrl: "/editor/imageUpload",
+					clipboard_handleImages: false,
+				};
+				
+				CKEDITOR.replace("boardContent", ckeditor_config);
+				
+				$("#submitBtn").click(function(){
+					$("#boardWriteForm").attr({
+						"method":"post",
+						"action":"/board/boardInsert"
+					});
+					$("#boardWriteForm").submit();
+				});
+
+			});
+			
+		
+		</script>		
+	</th:block>		      
+	<div layout:fragment="content">
+		<div class="container">
+			<h1 class="text-center">자유게시판</h1>
+			<hr>
+			<form class="form" id="boardWriteForm">
+				<div>
+					<label>분류</label>
+					<select name="boardCategory" id="boardCategory">
+						<option value="공지사항">공지사항</option>
+						<option value="이벤트">이벤트</option>
+						<option value="나눔">나눔</option>
+						<option value="질문">질문</option>
+					</select>
+					<label>제목</label>
+					<input type="text" name="boardTitle" id="boardTitle">
+				</div>
+				<div>
+					<label>내용</label><br>
+					<div id="smarteditor">
+						<textarea name="boardContent" id="boardContent"></textarea>
+					</div>
+				</div>
+				
+				<button type="button" id="submitBtn">작성</button>
+			</form>
+		</div>
+	</div>
+</html>

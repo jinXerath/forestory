@@ -34,7 +34,7 @@ public class BoardController {
 		return "client/board/boardList";
 	}
 	
-	@GetMapping("/boardInsert")
+	@GetMapping("/boardInsertForm")
 	public String boardInsertForm() {
 		return "client/board/boardInsertForm";
 	}
