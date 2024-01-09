@@ -1,55 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
+<xmlns:th="http://www.thymeleaf.org" 
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{client/fragments/clientLayout}">
-	<th:block layout:fragment="css">
-		<style>
-			.errorSpan{
-				color: red;
-				font-size: 12px;
+	<head>
+	<style>
+		.errorSpan{
+			color: red;
+			font-size: 12px;
+		}
+	</style>
+	<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
+	<script th:inline="javascript">
+		
+		
+		$(function () {
+			
+			
+			let ckeditor_config = {
+				height: 500,
+				filebrowserUploadUrl: "/editor/imageUpload",
+				clipboard_handleImages: false,
+			};
+
+			CKEDITOR.replace("boardContent", ckeditor_config);
+			
+			
+			if ($("#errorSpan").text() != "") {
+				$("#boardTitle").focus();
+			} else if ($("#contentError").text() != "") {
+				console.log(CKEDITOR.instances["boardContent"]);
+				CKEDITOR.instances["boardContent"].focus();
+				//console.log(CKEDITOR.focusManager(CKEDITOR.instances.boardContent));
+				//CKEDITOR.focusManager(CKEDITOR.instances.boardContent).focus();
+				//console.log(CKEDITOR.focusManager(CKEDITOR.instances.boardContent));
 			}
-		</style>
-	</th:block>
-	<th:block layout:fragment="js">
-		<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
-		<script th:inline="javascript">
 			
-			
-			$(function () {
-				
-				
-				let ckeditor_config = {
-					height: 500,
-					filebrowserUploadUrl: "/editor/imageUpload",
-					clipboard_handleImages: false,
-				};
-	
-				CKEDITOR.replace("boardContent", ckeditor_config);
-				
-				
-				if ($("#errorSpan").text() != "") {
-					$("#boardTitle").focus();
-				} else if ($("#contentError").text() != "") {
-					console.log(CKEDITOR.instances["boardContent"]);
-					CKEDITOR.instances["boardContent"].focus();
-					//console.log(CKEDITOR.focusManager(CKEDITOR.instances.boardContent));
-					//CKEDITOR.focusManager(CKEDITOR.instances.boardContent).focus();
-					//console.log(CKEDITOR.focusManager(CKEDITOR.instances.boardContent));
-				}
-				
-				$("#submitBtn").click(function () {
-					$("#boardWriteForm").attr({
-						"method": "post",
-						"action": "/board/insert"
-					});
-					$("#boardWriteForm").submit();
+			$("#submitBtn").click(function () {
+				$("#boardWriteForm").attr({
+					"method": "post",
+					"action": "/board/insert"
 				});
-	
-				
+				$("#boardWriteForm").submit();
 			});
+
 			
-		</script>
-	</th:block>
+		});
+		
+	</script>
+</head>
 <div layout:fragment="content" class="container">
 	<h1 class="text-center">자유게시판</h1>
 	<hr>

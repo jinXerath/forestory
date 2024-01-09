@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{client/fragments/clientLayout}">
-
-
-	<th:block layout:fragment="js">
-		<script>
-			$(function(){
-				
-				/* 글쓰기 버튼 클릭 시 */
-				$("#insertFormBtn").click(function(){
-	      			location.href="/board/insert";
-	      		});
-	      		
-	      		/* 검색 버튼 클릭 시 */
-	      		$("#searchBtn").click(function(){
-					$("#boardSearch").attr({
-						"method":"get",
-						"action":"/board/list"
-					});
-					$("#boardSearch").submit();
+<head>
+	<script>
+		$(function(){
+			
+			/* 글쓰기 버튼 클릭 시 */
+			$("#insertFormBtn").click(function(){
+      			location.href="/board/insert";
+      		});
+      		
+      		/* 검색 버튼 클릭 시 */
+      		$("#searchBtn").click(function(){
+				$("#boardSearch").attr({
+					"method":"get",
+					"action":"/board/list"
 				});
+				$("#boardSearch").submit();
 			});
-		</script>
-	</th:block>
+		});
+	</script>
+	</head>
 <div layout:fragment="content" class="container">
 	<h1 class="text-center">자유게시판</h1>
 	<hr>

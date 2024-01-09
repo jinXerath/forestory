@@ -2,15 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" 
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{client/fragments/clientLayout}">
-	  
-	<th:block layout:fragment="css">
+	  <head>
 		<link th:href="@{/resources/include/css/client/forestoryInsertForm.css}" rel="stylesheet"/>
-	</th:block>
 	
-	<th:block layout:fragment="js">
 		<script th:src="@{/resources/include/js/client/forestoryList.js}" type="text/javascript"></script>		
 		<script th:src="@{/resources/include/js/jquery-3.7.1.min.js}" type="text/javascript"></script>		
-		<script th:src="@{/resources/ckeditor/ckeditor.js}" type="text/javascript"></script>		
 		<script type="text/javascript">
 			$(function(){
 				$("#forestoryInsertBtn").click(function(){
@@ -21,33 +17,10 @@
 					$("forestoryInsertForm").submit();
 				});
 			})
-				
-			
 		
-		// ckEditor 공부하고 다시해..	
-		// $(function(){
-				
-		//		let ckeditor_config = {
-		//			height: 500,
-		//			filebrowserUploadUrl: "/editor/imageUpload",
-		//			clipboard_handleImages: false,
-		//		};
-		//		
-		//		CKEDITOR.replace("forestoryContent", ckeditor_config);
-		//		
-		//		$("#submitBtn").click(function(){
-		//			$("#forestoryInsertForm").attr({
-		//				"method":"post",
-		//				"action":"/forestory/insert"
-		//			});
-		//			$("#forestoryInsertForm").submit();
-		//		});
-
-		//	}); 
-			
 		
 		</script>		
-	</th:block>			
+	</head>	
 	<!-- 본문 -->	  
 	<div layout:fragment="content">
 	<div id="forestoryContainer">
