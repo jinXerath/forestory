@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{client/fragments/clientLayout}">
+<head>
+	
+</head>
+<div layout:fragment="content" class="container">
+	<h1 class="text-center">자유게시판</h1>
+	<hr>
+	<div id="boardDetail">
+		<table class="table">
+			<tr>
+				<th colspan="2" th:text="${board.boardTitle}"></th>
+			</tr>
+			<tr>
+				<td th:text="${board.boardRegdate}"></td>
+				<td th:text="${board.boardReadcnt}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" th:utext="${board.boardContent}"></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<button type="button" th:onclick="|location.href='@{/board/list}'|">목록</button>
+		<button type="button" th:onclick="|location.href='@{|/board/edit/${board.boardNo}|}'|">수정</button>
+		<!--<button type="button" th:onclick="|location.href='@{/board/list}'|">삭제</button>-->
+	</div>
+</div>
+</html>
