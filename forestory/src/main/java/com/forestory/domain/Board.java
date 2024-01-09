@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @SequenceGenerator(name="board_generator", sequenceName = "board_seq", initialValue = 1, allocationSize = 1)
 @Data
-@Builder(builderMethodName = "BoardBuilder")
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Board {
@@ -50,11 +50,22 @@ public class Board {
 	@Builder.Default
 	private Date boardRegdate = new Date();		// 등록일
 	
-	public static BoardBuilder builder(BoardDTO boardDTO) {
-        return BoardBuilder()
+	//== 빌더 ==//
+	public static Board toEntity(BoardDTO boardDTO) {
+        return Board.builder()
+        			.boardNo(boardDTO.getBoardNo())
                     .boardCategory(boardDTO.getBoardCategory())
                     .boardTitle(boardDTO.getBoardTitle())
-                    .boardContent(boardDTO.getBoardContent());
+                    .boardContent(boardDTO.getBoardContent())
+                    .boardReadcnt(boardDTO.getBoardReadcnt())
+        			.boardRegdate(boardDTO.getBoardRegdate())
+        			.build();
     }
+	
+	//== 조회수 증가 ==//
+	public void plusHit() {
+		boardReadcnt++;
+	}
+	
 	
 }
