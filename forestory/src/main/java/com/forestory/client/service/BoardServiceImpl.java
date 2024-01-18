@@ -29,6 +29,8 @@ public class BoardServiceImpl implements BoardService {
 			boardList = boardRepository.findByBoardCategory(boardCategory, pageable);
 		} else if (boardCategory == null && keyword != null) {
 			boardList = boardRepository.findByBoardTitleContainingOrBoardContentContaining(keyword, keyword, pageable);
+		} else {
+			boardList = boardRepository.findByCategoryAndTitleOrContentWithPaging(boardCategory, keyword, keyword, pageable);
 		}
 		
 		return boardList;
